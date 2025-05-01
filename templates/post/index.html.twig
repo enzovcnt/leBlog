@@ -10,6 +10,7 @@
                     {% for img in post.images %}
                         <img src="{{ vich_uploader_asset(img, "imageFile") | imagine_filter('miniature') }}" class="card-img-top" alt="...">
                     {% endfor %}
+                    <p>{{ post.category.name }}</p>
                     <h5 class="card-title">{{ post.title }}</h5>
                     {% if app.user %}
                         {% if post.author == app.user %}

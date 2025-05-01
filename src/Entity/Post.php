@@ -38,6 +38,10 @@ class Post
     #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'post', orphanRemoval: true, cascade: ['persist', 'remove'])]
     private Collection $images;
 
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -141,6 +145,18 @@ class Post
                 $image->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

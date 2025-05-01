@@ -21,6 +21,7 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+            <p>{{ post.category.name }}</p>
             <h5 class="card-title">{{ post.title }}</h5>
             {% if app.user %}
                 {% if post.author == app.user %}
