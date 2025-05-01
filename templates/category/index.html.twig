@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MaterialController!{% endblock %}
+
+{% block body %}
+
+
+    <ul class="list-group">
+        {% for category in category %}
+            <li class="list-group-item">{{ category.id }} : {{ category.name }}</li>
+        {% endfor %}
+
+    </ul>
+
+    {{ form_start(formCategory) }}
+    {{ form_row(formCategory.name) }}
+    <button type="submit">Send</button>
+    {{ form_end(formCategory) }}
+
+
+{% endblock %}
