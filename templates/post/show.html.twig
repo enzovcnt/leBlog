@@ -30,6 +30,7 @@
             {% endif %}
             <p class="card-text">{{ post.content }}</p>
             <a href="{{ path('app_posts') }}" class="btn btn-primary">Retour</a>
+            {% include 'like/index.html.twig' %}
             {% if app.user %}
                 {% if post.author == app.user %}
                     <a href="{{ path('app_post_delete', {id:post.id}) }}" class="btn btn-danger">Supprimer</a>
@@ -53,6 +54,7 @@
             <div class="border-blue border">
                 <p>Auteur : {{ comment.author.email }}</p>
                 <p>{{ comment.content }}</p>
+                {% include 'like/like.html.twig' %}
                 {% if app.user %}
                     {% if comment.author == app.user or "ROLE_ADMIN" in app.user.roles %}
 

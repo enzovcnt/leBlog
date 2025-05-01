@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="card" style="width: 100vh;">
-        {% if app.user.profile.image %}
+        {% if app.user.profile.image and app.user.profile.image.imageName %}
             <div class="mb-4 text-center">
                 <img src="{{ vich_uploader_asset(app.user.profile.image, 'imageFile') | imagine_filter('miniature') }}" alt="..."
                      class="img-thumbnail rounded-circle">

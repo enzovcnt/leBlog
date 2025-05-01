@@ -20,6 +20,7 @@
                     <p class="card-text">{{ post.content }}</p>
 
                     <a href="{{ path('app_post_show', {id:post.id}) }}" class="btn btn-primary">Voir</a>
+                    {% include 'like/index.html.twig' %}
                 </div>
             </div>
         {% endfor %}

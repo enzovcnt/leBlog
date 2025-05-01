@@ -33,7 +33,7 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'images')]
     private ?Post $post = null;
 
-    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist'])]
+    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
     private ?Profile $profile = null;
 
     /**
