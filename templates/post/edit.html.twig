@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    {{ form_start(formEdit)}}
+    {{ form_row(formEdit.title)}}
+    {{ form_row(formEdit.content)}}
+    <button type="submit" class="btn btn-success">Appliquer</button>
+    {{ form_end(formEdit)}}
+
+{% endblock %}
