@@ -3,13 +3,11 @@
 {% block body %}
 
 
-    {% if app.user.profile.image %}
+    {% if app.user.profile.image and app.user.profile.image.imageName %}
         <div class="card mb-4" style="width: 18rem;">
-            <img class="card-img-top" src="{{ vich_uploader_asset(app.user.profile.image, 'imageFile')|imagine_filter('miniature') }}" alt="Image de profil">
+            <img class="card-img-top" src="{{ vich_uploader_asset(app.user.profile.image, 'imageFile') | imagine_filter('miniature') }}" alt="Image de profil">
             <div class="card-body text-center">
-                <a class="btn btn-danger" href="{{ path('add_removepictureprofile', {id: app.user.profile.image.id}) }}">
-                    Supprimer l'image
-                </a>
+
             </div>
         </div>
     {% endif %}

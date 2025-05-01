@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 100vh;">
         {% if app.user.profile.image %}
             <div class="mb-4 text-center">
                 <img src="{{ vich_uploader_asset(app.user.profile.image, 'imageFile') | imagine_filter('miniature') }}" alt="..."
@@ -13,11 +13,10 @@
         {% endif %}
         <div class="card-body">
             {% if app.user.profile.displayName %}
-                {{ app.user.profile.displayName }}
+            <p><strong>{{ app.user.profile.displayName }}</strong></p>
             {% else %}
                 {{ app.user.email }}
-            {% endif %}.
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            {% endif %}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
@@ -33,7 +32,6 @@
                 {% endif %}
                 {% endfor %}
             </li>
-            <li class="list-group-item">A third item</li>
         </ul>
         <div class="card-body">
             <h4>Set your displayName :</h4>

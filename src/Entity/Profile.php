@@ -6,6 +6,7 @@ use App\Repository\ProfileRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
 class Profile
 {
@@ -23,6 +24,7 @@ class Profile
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $ofUser = null;
+
 
     public function getId(): ?int
     {

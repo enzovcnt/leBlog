@@ -33,8 +33,7 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'images')]
     private ?Post $post = null;
 
-    #[ORM\ManyToOne(inversedBy: 'images')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist'])]
     private ?Profile $profile = null;
 
     /**
@@ -105,6 +104,15 @@ class Image
 
     public function setProfile(?Profile $profile): static
     {
+        // unset the owning side of the relation if necessary
+        if ($profile === null && $this->profile !== null) {
+            $this->profile->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($profile !== null && $profile->getImage() !== $this) {
+            $profile->setImage($this);
+        }
 
         $this->profile = $profile;
 
