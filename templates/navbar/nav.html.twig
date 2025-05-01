@@ -22,9 +22,11 @@
                     <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                     <a class="nav-link" href="{{ path('app_register') }}">Register</a>
                 {% endif %}
+                {% if app.user %}
                 {% if app.user.profile.image %}
                     <img src="{{ vich_uploader_asset(app.user.profile.image, 'imageFile')|imagine_filter('showPP') }}"
                          alt="..." class="rounded-circle w-20 h-20" >
+                {% endif %}
                 {% endif %}
             </ul>
         </div>
