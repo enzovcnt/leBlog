@@ -1,5 +1,3 @@
-console.log ('COUCOU JE SUIS LIKE')
-
 const boutons = document.querySelectorAll('.like')
 boutons.forEach((bouton)=>{
     bouton.addEventListener('click', like)

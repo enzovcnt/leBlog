@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MaterialController!{% endblock %}
+{% block title %}Category{% endblock %}
 
 {% block body %}
 
@@ -14,7 +14,7 @@
 
     {{ form_start(formCategory) }}
     {{ form_row(formCategory.name) }}
-    <button type="submit">Send</button>
+    <button type="submit" class="btn btn-success">Send</button>
     {{ form_end(formCategory) }}
 
 

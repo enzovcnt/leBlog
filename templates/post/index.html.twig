@@ -3,26 +3,29 @@
 {% block title %}Hello PostController!{% endblock %}
 
 {% block body %}
-
+<div class="d-flex flex-row justify-content-around flex-wrap">
         {% for post in posts %}
-            <div class="card mt-3" style="width: 18rem;">
-                <div class="card-body">
-                    {% for img in post.images %}
-                        <img src="{{ vich_uploader_asset(img, "imageFile") | imagine_filter('miniature') }}" class="card-img-top" alt="...">
-                    {% endfor %}
-                    <p>{{ post.category.name }}</p>
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    {% if app.user %}
-                        {% if post.author == app.user %}
-                            <p>C'est toi bg</p>
+
+                <div class="card mt-3" style="width: 18rem;">
+                    <div class="card-body">
+                        {% for img in post.images %}
+                            <img src="{{ vich_uploader_asset(img, "imageFile") | imagine_filter('miniature') }}" class="card-img-top" alt="...">
+                        {% endfor %}
+                        <p>{{ post.category.name }}</p>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        {% if app.user %}
+                            {% if post.author == app.user %}
+                                <p>C'est toi bg</p>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                    <p class="card-text">{{ post.content }}</p>
+                        <p class="card-text">{{ post.content }}</p>
 
-                    <a href="{{ path('app_post_show', {id:post.id}) }}" class="btn btn-primary">Voir</a>
-                    {% include 'like/index.html.twig' %}
+                        <a href="{{ path('app_post_show', {id:post.id}) }}" class="btn btn-primary">Voir</a>
+                        {% include 'like/index.html.twig' %}
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
 
+
+        {% endfor %}
+    </div>
 {% endblock %}

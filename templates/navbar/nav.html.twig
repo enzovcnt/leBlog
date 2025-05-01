@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,6 +9,7 @@
                 {% if app.user %}
                     {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                         <a class="nav-link" href="{{ path('app_admin') }}">admin</a>
+                        <a class="nav-link" href="{{ path('app_category') }}">category</a>
                     {% endif %}
                     <a class="nav-link" href="{{ path('app_posts') }}">Posts</a>
                     <a class="nav-link" href="{{ path('app_post_new') }}">New</a>
@@ -20,6 +21,10 @@
                 {% else %}
                     <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                     <a class="nav-link" href="{{ path('app_register') }}">Register</a>
+                {% endif %}
+                {% if app.user.profile.image %}
+                    <img src="{{ vich_uploader_asset(app.user.profile.image, 'imageFile')|imagine_filter('showPP') }}"
+                         alt="..." class="rounded-circle w-20 h-20" >
                 {% endif %}
             </ul>
         </div>

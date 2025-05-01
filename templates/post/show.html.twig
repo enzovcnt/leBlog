@@ -3,6 +3,10 @@
 {% block body %}
 
     <div class="card" style="width: 18rem;">
+        {% if post.author.profile.image %}
+            <img src="{{ vich_uploader_asset(post.author.profile.image, 'imageFile')|imagine_filter('showPP') }}"
+                 alt="..." class="rounded-circle w-25 h-25" >
+        {% endif %}
         <div class="card-body">
             <div id="carouselExampleFade" class="carousel slide carousel-fade">
                 <div class="carousel-inner">
@@ -24,6 +28,7 @@
             <p>{{ post.category.name }}</p>
             <h5 class="card-title">{{ post.title }}</h5>
             {% if app.user %}
+                <p>{{ post.author.email }}</p>
                 {% if post.author == app.user %}
                     <p>C'est toi bg</p>
                 {% endif %}
@@ -33,9 +38,11 @@
             {% include 'like/index.html.twig' %}
             {% if app.user %}
                 {% if post.author == app.user %}
+                    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                     <a href="{{ path('app_post_delete', {id:post.id}) }}" class="btn btn-danger">Supprimer</a>
                     <a href="{{ path('app_post_edit', {id:post.id}) }}" class="btn btn-warning">Modifier</a>
                     <a href="{{ path('app_post_addimage', {id:post.id}) }}" class="btn btn-secondary">Ajouter image</a>
+                    {% endif %}
                 {% endif %}
             {% endif %}
         </div>
@@ -54,7 +61,7 @@
             <div class="border-blue border">
                 <p>Auteur : {{ comment.author.email }}</p>
                 <p>{{ comment.content }}</p>
-                {% include 'like/like.html.twig' %}
+
                 {% if app.user %}
                     {% if comment.author == app.user or "ROLE_ADMIN" in app.user.roles %}
 
@@ -70,3 +77,4 @@
     </div>
 
 {% endblock %}
+

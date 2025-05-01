@@ -15,6 +15,7 @@ class Like
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Post $post = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]
