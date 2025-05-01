@@ -7,7 +7,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 {% if app.user %}
-
+                    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                        <a class="nav-link" href="{{ path('app_admin') }}">admin</a>
+                    {% endif %}
                     <a class="nav-link" href="{{ path('app_posts') }}">Posts</a>
                     <a class="nav-link" href="{{ path('app_post_new') }}">New</a>
                     <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
