@@ -4,7 +4,23 @@
 
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                <div class="carousel-inner">
+                    {% for img in post.images %}
+                    <div class="carousel-item active">
+                        <img src="{{ vich_uploader_asset(img, "imageFile") | imagine_filter('miniature') }}" class="card-img-top" alt="...">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
             <h5 class="card-title">{{ post.title }}</h5>
             {% if app.user %}
                 {% if post.author == app.user %}
@@ -17,6 +33,7 @@
                 {% if post.author == app.user %}
                     <a href="{{ path('app_post_delete', {id:post.id}) }}" class="btn btn-danger">Supprimer</a>
                     <a href="{{ path('app_post_edit', {id:post.id}) }}" class="btn btn-warning">Modifier</a>
+                    <a href="{{ path('app_post_addimage', {id:post.id}) }}" class="btn btn-secondary">Ajouter image</a>
                 {% endif %}
             {% endif %}
         </div>
