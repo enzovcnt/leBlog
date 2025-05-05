@@ -4,13 +4,15 @@ namespace App\Entity;
 
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Imagine\Image\ImageInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[Vich\Uploadable]
-class Image
+
+class Image implements \Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -117,5 +119,27 @@ class Image
         $this->profile = $profile;
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->imageName,
+        ));
+    }
+
+    public function unserialize(string $data)
+    {
+        return unserialize($data);
+    }
+
+    public function __serialize(): array
+    {
+        return ['imageName' => $this->imageName,];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->imageName = $data['imageName'];
     }
 }

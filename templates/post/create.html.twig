@@ -4,8 +4,9 @@
 {% block body %}
 
 
-    {{ form_start(formNew)}}
+    {{ form_start(formNew, {attr: {'novalidate': 'novalidate'}})}}
     {{ form_row(formNew.title)}}
+    {{ form_errors(formNew) }}
     {{ form_row(formNew.content)}}
     {{ form_row(formNew.category) }}
     <button type="submit" class="btn btn-success">Envoyer</button>
