@@ -4,7 +4,7 @@
 {% block body %}
 
 
-    {{ form_start(formNew, {attr: {'novalidate': 'novalidate'}})}}
+    {{ form_start(formNew)}}
     {{ form_row(formNew.title)}}
     {{ form_errors(formNew) }}
     {{ form_row(formNew.content)}}

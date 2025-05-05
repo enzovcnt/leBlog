@@ -19,19 +19,10 @@ class Post
 
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: 'Your title must be at least 2 characters long',
-        maxMessage: 'Your title cannot be longer than 50 characters',
-    )]
     private ?string $title = null;
 
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotIdenticalTo(
-        'pastèque'
-    )]
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]

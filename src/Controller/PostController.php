@@ -54,7 +54,7 @@ final class PostController extends AbstractController
     }
 
     #[Route('/post/{id}', name: 'app_post_show', priority: -1)]
-    public function show(Post $post): Response
+    public function show(Post $post, Request $request, EntityManagerInterface $manager): Response
     {
         if(!$this->getUser() || !$post)
         {
@@ -62,9 +62,19 @@ final class PostController extends AbstractController
         }
         $comment = new Comment();
         $form = $this->createForm(CommentForm::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            $comment->setAuthor($this->getUser());
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('show_post', ['id' => $post->getId()]);
+        }
         return $this->render('post/show.html.twig', [
             'post' => $post,
-            'formComment' => $form->createView(),
+            'formComment' => $form,
             'comment' => $comment,
         ]);
 

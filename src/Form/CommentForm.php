@@ -16,7 +16,6 @@ class CommentForm extends AbstractType
     {
         $builder
             ->add('content')
-
         ;
     }
 

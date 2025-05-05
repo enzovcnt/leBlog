@@ -30,6 +30,7 @@ final class CommentController extends AbstractController
             $comment->setPost($post);
             $manager->persist($comment);
             $manager->flush();
+
         }
         return $this->redirectToRoute('app_post_show', [
             'id' => $post->getId(),
