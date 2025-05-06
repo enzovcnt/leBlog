@@ -34,12 +34,12 @@
             </li>
         </ul>
         <div class="card-body">
-            <h4>Set your displayName :</h4>
+            <h4>Change ton nom</h4>
             {{ form_start(form, {'action': path('app_profile', {id: app.user.profile.id}), 'method': 'POST'}) }}
             {{ form_row(form.displayName) }}
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <button type="submit" class="btn btn-warning">Edit</button>
             {{ form_end(form) }}
-            <a href="{{ path('app_addImageProfile', {id: app.user.profile.id}) }}" class="card-link">Nouvelle image</a>
+            <a href="{{ path('app_addImageProfile', {id: app.user.profile.id}) }}" class="card-link btn btn-primary">Nouvelle image</a>
 
         </div>
     </div>

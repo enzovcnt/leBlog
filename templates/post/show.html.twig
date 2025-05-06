@@ -58,15 +58,15 @@
     <div>
         {% for comment in post.comments %}
 
-            <div class="border-blue border">
+            <div class="border-blue border bg-light">
                 <p>Auteur : {{ comment.author.email }}</p>
                 <p>{{ comment.content }}</p>
             {% if app.user %}
 
                     {% if comment.author == app.user or "ROLE_ADMIN" in app.user.roles %}
 
-                        <a href="{{ path('app_comment_delete', {id:comment.id}) }}">Supprimer</a>
-                        <a href="{{ path('app_comment_edit', {id:comment.id}) }}">edit</a>
+                        <a href="{{ path('app_comment_delete', {id:comment.id}) }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('app_comment_edit', {id:comment.id}) }}" class="btn btn-warning">edit</a>
 
                     {% endif %}
             {% endif %}
