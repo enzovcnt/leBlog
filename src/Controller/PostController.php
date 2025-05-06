@@ -10,6 +10,7 @@ use App\Form\ImageForm;
 use App\Form\PostForm;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,15 +19,20 @@ use Symfony\Component\Routing\Attribute\Route;
 final class PostController extends AbstractController
 {
     #[Route('/', name: 'app_posts')]
-    public function index(PostRepository $postRepository): Response
+    public function index(PostRepository $postRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        if(!$this->getUser())
-        {
+        if(!$this->getUser()){
             return $this->redirectToRoute('app_login');
         }
 
+        $pagination = $paginator->paginate(
+            $postRepository->findAll(),
+            $request->query->getInt('page', 1),
+            3
+        );
+
         return $this->render('post/index.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

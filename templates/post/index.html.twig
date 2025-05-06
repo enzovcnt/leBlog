@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="d-flex flex-row justify-content-around flex-wrap">
-        {% for post in posts %}
+        {% for post in pagination %}
 
                 <div class="card mt-3" style="width: 18rem;">
                     <div class="card-body">
@@ -27,5 +27,8 @@
 
 
         {% endfor %}
+    </div>
+    <div class="navigation d-flex justify-content-center mt-4">
+        {{ knp_pagination_render(pagination,"@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig") }}
     </div>
 {% endblock %}
