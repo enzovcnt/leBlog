@@ -17,11 +17,24 @@ class Post
     #[ORM\Column]
     private ?int $id = null;
 
-
+    #[Assert\Length(min:5, max: 90)]
+    #[Assert\Regex(
+        pattern: '/^(?!.*\b(choucroute)\b).*/i',
+        message: 'choucroute interdit faut être fou',
+    )]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $title = null;
 
 
+    #[Assert\Regex(
+        pattern: '/^(?!.*\b(pastèque)\b).*/i',
+        message: 'arrête avec la pastèque'
+    )]
+    #[Assert\Length(
+        min:15,
+        max:100,
+        minMessage: '15 charactères minimum ')
+    ]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
