@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DonationController!{% endblock %}
+
+{% block body %}
+    <h1>Faire un don de 1$</h1>
+    <button id="donate-button" class="btn btn-primary don">Donner 1$</button>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe('{{ stripe_public_key }}');
+
+        document.getElementById('donate-button').addEventListener('click', function () {
+            fetch('/create-checkout-session', {
+                method: 'POST',
+            })
+                .then(response => response.json())
+                .then(session => {
+                    return stripe.redirectToCheckout({ sessionId: session.id });
+                })
+                .catch(error => console.error('Erreur:', error));
+        });
+    </script>
+{% endblock %}

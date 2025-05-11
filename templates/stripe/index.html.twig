@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StripeController!{% endblock %}
+
+{% block body %}
+
+
+    <script>
+        fetch('/create-checkout-session', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                return Stripe('pk_test_51RNaxmGfWiWK6m9pLX02OWZDiAaAz8pQqq2ObUnt9VUJzpPe2IV9YIe0Ao50CRNqOh67qPAHK2tW4VDP1z1nb4lp00x3BLUUAh').redirectToCheckout({ sessionId: data.id });
+            });
+    </script>
+{% endblock %}
